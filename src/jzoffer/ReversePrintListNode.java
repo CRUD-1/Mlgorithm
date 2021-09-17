@@ -3,6 +3,8 @@
  */
 package jzoffer;
 
+import java.util.Stack;
+
 class ListNode {
     int val;
     ListNode next;
@@ -13,11 +15,22 @@ class ListNode {
 }
 
 public class ReversePrintListNode {
-    private int i = 0;
+    private Stack<ListNode> stack = new Stack<>();
     public int[] reversePrint(ListNode head) {
-        while (head.next!=null){
-
+        ListNode listNode = null;
+        int i = 0;
+        while (head!=null){
+            listNode = head;
+            stack.push(listNode);
+            head = head.next;
+            i++;
         }
-        return null;
+        int array[] = new int[i];
+        int j = 0;
+        while(!stack.isEmpty()){
+            array[j] = stack.pop().val;
+            j++;
+        }
+        return array;
     }
 }
